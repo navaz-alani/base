@@ -1,0 +1,10 @@
+#!/bin/bash
+
+case "${1}" in
+  *help)
+    echo "${0##*/} opens up the webcam in mpv"
+    ;;
+  *)
+    mpv av://v4l2:/dev/video0 --profile=low-latency --untimed
+    ;;
+esac

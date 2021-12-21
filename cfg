@@ -1,0 +1,5 @@
+export CFG_BASE="${HOME}/.config/base/"
+
+export PATH="${PATH}:${HOME}/.local/bin:${CFG_BASE}/scripts"
+
+source "${CFG_BASE}/aliases"

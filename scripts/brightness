@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# increase/decrease granularity
+GRANULARITY=5
+
+case "${1}" in
+  *up)
+    xbacklight -inc ${GRANULARITY}
+    ;;
+  *down)
+    xbacklight -dec ${GRANULARITY}
+    ;;
+  *full)
+    xbacklight -set 100
+    ;;
+  *zero)
+    xbacklight -set 0
+    ;;
+  **help | *)
+    echo "${0##*/} modifies the screen brightness"
+    echo "usage: ${0##*/} [up | down | full | zero]"
+    ;;
+esac

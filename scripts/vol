@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# increase/decrease granularity
+GRANULARITY=5
+
+case "${1}" in
+  *up)
+    amixer sset Master ${GRANULARITY}%+
+    ;;
+  *down)
+    amixer sset Master ${GRANULARITY}%-
+    ;;
+  *full)
+    amixer sset Master 100%
+    ;;
+  *zero)
+    amixer sset Master 0%
+    ;;
+  *help | *)
+    echo "${0##*/} modifies the Master volume level"
+    echo "usage: ${0##*/} [up | down | full | zero]"
+    ;;
+esac
