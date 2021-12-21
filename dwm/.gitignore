@@ -1,1 +1,5 @@
 *.o
+dwm
+
+# patching leftovers
+*.orig
