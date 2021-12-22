@@ -1,0 +1,16 @@
+# Increase volume
+"vol up"
+   XF86AudioRaiseVolume
+
+"vol down"
+   XF86AudioLowerVolume
+
+# Mute volume
+"vol mute"
+   XF86AudioMute
+
+"brightness up"
+  XF86MonBrightnessUp
+
+"brightness down"
+  XF86MonBrightnessDown
