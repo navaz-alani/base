@@ -25,4 +25,8 @@ working directory.
 
 The `.xinitrc` file located in this repository will be symlinked to the home
 directory where the `startx` command will search for it.
-Alternatively, you can 
+
+## Notes
+
+* Establish a convention that all scripts in the `scripts` directory which
+  begin with `sb_` are for use (not exclusively) with the status bar.

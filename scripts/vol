@@ -35,4 +35,4 @@ case "${1}" in
     ;;
 esac
 
-sbmod_update volume # update volume module in status-bar
+sb_update volume # update volume module in status-bar
