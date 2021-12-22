@@ -3,6 +3,7 @@
 # add any dependencies here...
 deps=`cat << EOF
 go
+dunst
 xbindkeys
 pamixer
 inotify-tools
