@@ -1,0 +1,27 @@
+#!/bin/bash
+
+die() {
+  echo "${1} signals the status bar to update a named module"
+  echo "usage: ${1} [module]"
+}
+
+if [ -z "${1}" ]; then
+  die ${0##*/}
+  exit 1
+fi
+
+SOCK="/tmp/dwmstat_sig"
+
+if [ ! -S "${SOCK}" ]; then
+  echo "${0##*/} [ERROR] dwmstat does not seem to be running"
+  exit 1
+fi
+
+case "${1}" in
+  *h)
+    die
+    ;;
+  *)
+    printf "${1}" | socat UNIX-CONNECT:${SOCK} -
+    ;;
+esac

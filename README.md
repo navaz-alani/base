@@ -6,12 +6,14 @@ essentials (such as `dwm`, `dmenu`).
 
 ## Setup
 
-Clone this repository into the `~/.config` directory.
+Clone this repository into the `~/.config` directory (do so recursively to also
+clone the `dwmstat` repository).
 Do not rename it as the name is used in some of the configuration.
 
-After cloning, make sure you have the dependencies installed.
-Run `./install-deps.sh` to do so (you will be presented with a list of the
-packages which will be installed, and prompted for confirmation).
+After cloning, you can install all the dependencies, compile and install the
+programs using the `install.sh` script.
+You will need to enter the password to install some programs (e.g.\ `dwm`) to
+the root level directories.
 
 ## Shell Configuration
 
@@ -21,9 +23,6 @@ working directory.
 
 ## X Configuration
 
-Add the line `xbindkeys -f ~/.config/base/.xbindkeysrc` to the `.xinitrc` file.
-This will start the hot-key server.
-
-Add the line `exec dwm` at the end of the `.xinitrc` file.
-This starts `dwm` when the X server is started.
-
+The `.xinitrc` file located in this repository will be symlinked to the home
+directory where the `startx` command will search for it.
+Alternatively, you can 

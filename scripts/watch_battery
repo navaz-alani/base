@@ -1,0 +1,8 @@
+#!/bin/bash
+
+BAT_STAT="/sys/class/power_supply/BAT1/status"
+
+while inotifywait -m -e modify "${BAT_STAT}"; do
+  echo "update"
+  sbmod_update battery
+done

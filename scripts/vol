@@ -1,26 +1,38 @@
-
 #!/bin/bash
 # increase/decrease granularity
 GRANULARITY=5
 
 case "${1}" in
   *up)
-    amixer sset Master ${GRANULARITY}%+
+    pamixer --increase ${GRANULARITY}
     ;;
   *down)
-    amixer sset Master ${GRANULARITY}%-
+    pamixer --decrease ${GRANULARITY}
     ;;
   *full)
-    amixer sset Master 100%
+    pamixer --set-volume 100
     ;;
   *zero)
-    amixer sset Master 0%
+    pamixer --set-volume 0
     ;;
   *mute)
-    amixer sset Master toggle
+    if [ `pamixer --get-mute` == "true" ]; then
+      pamixer --unmute
+    else
+      pamixer --mute
+    fi
+    ;;
+  # the following cases dont' need to update the status-bar;
+  # therefore, they must explicitly exit;
+  *get)
+    pamixer --get-volume-human
+    exit 0
     ;;
   *help | *)
     echo "${0##*/} modifies the Master volume level"
-    echo "usage: ${0##*/} [up | down | full | zero | mute]"
+    echo "usage: ${0##*/} [get | up | down | full | zero | mute]"
+    exit 0
     ;;
 esac
+
+sbmod_update volume # update volume module in status-bar

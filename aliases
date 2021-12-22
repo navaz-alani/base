@@ -2,6 +2,9 @@
 alias l='ls -lah'
 alias md='mkdir -p'
 alias rmrf='rm -rf'
+alias vim='nvim'
+alias vi='nvim'
+alias v='nvim'
 
 # git
 alias g='git'

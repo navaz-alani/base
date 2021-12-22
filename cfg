@@ -1,5 +1,6 @@
 export CFG_BASE="${HOME}/.config/base/"
 
-export PATH="${PATH}:${HOME}/.local/bin:${CFG_BASE}/scripts"
+# add the scripts & bin directories to the path
+export PATH="${PATH}:${HOME}/.local/bin:${CFG_BASE}/scripts:${CFG_BASE}/bin"
 
 source "${CFG_BASE}/aliases"
