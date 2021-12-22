@@ -4,14 +4,17 @@
 deps=`cat << EOF
 go
 dunst
-xbindkeys
 pamixer
 inotify-tools
+python-pywal
 mpv
-xorg-xbacklight
+socat
+sxiv
 kitty
-libxft
-libxinerama
+xorg-xbacklight
+xbindkeys
+xdotool
+libxft libxinerama
 noto-fonts noto-fonts-extra noto-fonts-cjk noto-fonts-emoji
 ttf-font-awesome
 EOF
@@ -70,9 +73,19 @@ echo "done"
 
 echo "==============================="
 echo "Linking .xinitrc file to home directory..."
-ln .xinitrc ~
+ln ./config/.xinitrc ~
 if [ $? -ne 0 ]; then
   echo "error linking .xinitrc file!"
+  exit 1
+fi
+echo "done"
+
+echo "==============================="
+echo "setting up sxiv key-handler..."
+mkdir -p ../sxiv/exec
+ln config/sxiv/key-handler
+if [ $? -ne 0 ]; then
+  echo "error linking sxiv key-handler!"
   exit 1
 fi
 echo "done"

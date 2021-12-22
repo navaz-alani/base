@@ -1,0 +1,8 @@
+#!/bin/bash
+case "$1" in
+  "C-w") 
+    # use only the first selected image
+    read bg
+    chbg set ${bg}
+    ;;
+esac

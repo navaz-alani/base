@@ -1,0 +1,37 @@
+#!/bin/bash
+
+EXE="${0##*/}"
+
+setbg() {
+  bg="${1}"
+  wal -i "${bg}"
+  pidof dwm
+  if [ $? -eq 0 ]; then # dwm is running
+    xdotool key Alt+F5
+  fi
+}
+
+case "${1}" in
+  *rand)
+    # chose a random background image
+    bg=`ls ${CFG_BASE}/backgrounds/* | shuf | head -n1`
+    setbg "${bg}"
+    ;;
+  *choose)
+    # open up sxiv and the key-bindings there will do the rest
+    sxiv -t "${CFG_BASE}/backgrounds"
+    ;;
+  *set)
+    bg="${2}"
+    if [ ! -f "${bg}" ]; then
+      echo "error: background '${bg}' not found"
+      exit 1
+    fi
+    setbg "${bg}"
+    ;;
+  *)
+    echo "${EXE} changes the background"
+    echo "usage: ${EXE} [ rand | choose | set [bg] ]"
+    exit
+    ;;
+esac

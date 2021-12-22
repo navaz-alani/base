@@ -3,4 +3,7 @@ export CFG_BASE="${HOME}/.config/base/"
 # add the scripts & bin directories to the path
 export PATH="${PATH}:${HOME}/.local/bin:${CFG_BASE}/scripts:${CFG_BASE}/bin"
 
+export BROWSER="firefox"
+export EDITOR="nvim"
+
 source "${CFG_BASE}/aliases"
