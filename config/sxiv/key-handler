@@ -1,6 +1,6 @@
 #!/bin/bash
 case "$1" in
-  "C-w") 
+  "C-w") # set background image
     # use only the first selected image
     read bg
     chbg set ${bg}

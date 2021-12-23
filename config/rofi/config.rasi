@@ -1,0 +1,9 @@
+@theme "arthur"
+
+* {
+  font: "SourceCodePro 15";
+}
+
+window {
+  transparency: 0;
+}
