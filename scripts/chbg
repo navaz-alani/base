@@ -6,7 +6,7 @@ setbg() {
   bg="${1}"
   wal -n -i "${bg}" # generate color schemes
   feh --bg-fill "${bg}"
-  pidof dwm || xdotool key Alt+F5
+  pidof dwm || xdotool key Super+F5
 }
 
 case "${1}" in
