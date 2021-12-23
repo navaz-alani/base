@@ -11,6 +11,7 @@ feh
 mpv
 socat
 sxiv
+rofi
 kitty
 xorg-xbacklight
 xbindkeys
