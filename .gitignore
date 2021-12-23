@@ -1,1 +1,10 @@
+# object files in any directory
+**/*.o
+# compiled programs
+dwm/dwm
+dmenu/dmenu
 bin/dwmstat
+
+# patching leftovers
+*.orig
+*.rej
