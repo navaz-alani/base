@@ -1867,15 +1867,9 @@ kpress(XEvent *ev)
 		len = XmbLookupString(xw.ime.xic, e, buf, sizeof buf, &ksym, &status);
 	else
 		len = XLookupString(e, buf, sizeof buf, &ksym, NULL);
-  if (IS_SET(MODE_NORMAL)) {
-    if (kPressHist(buf, len, match(ControlMask, e->state), &ksym)
-                                          == finish) normalMode();
-    return;
-  }
-	if ( IS_SET(MODE_KBDSELECT) ) {
-		if ( match(XK_NO_MOD, e->state) ||
-		     (XK_Shift_L | XK_Shift_R) & e->state )
-			win.mode ^= trt_kbdselect(ksym, buf, len);
+	if (IS_SET(MODE_NORMAL)) {
+		if (kPressHist(buf, len, match(ControlMask, e->state), &ksym)
+		                                      == finish) normalMode();
 		return;
 	}
 	/* 1. shortcuts */
@@ -2106,14 +2100,6 @@ usage(void)
 	    " [-n name] [-o file]\n"
 	    "          [-T title] [-t title] [-w windowid] -l line"
 	    " [stty_args ...]\n", argv0, argv0);
-}
-
-void toggle_winmode(int flag) {
-	win.mode ^= flag;
-}
-
-void keyboard_select(const Arg *dummy) {
-	win.mode ^= trt_kbdselect(-1, NULL, 0);
 }
 
 int
