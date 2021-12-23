@@ -4,11 +4,9 @@ EXE="${0##*/}"
 
 setbg() {
   bg="${1}"
-  wal -i "${bg}"
-  pidof dwm
-  if [ $? -eq 0 ]; then # dwm is running
-    xdotool key Alt+F5
-  fi
+  wal -n -i "${bg}" # generate color schemes
+  feh --bg-fill "${bg}"
+  pidof dwm || xdotool key Alt+F5
 }
 
 case "${1}" in

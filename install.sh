@@ -7,6 +7,7 @@ dunst
 pamixer
 inotify-tools
 python-pywal
+feh
 mpv
 socat
 sxiv
