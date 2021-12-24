@@ -41,7 +41,7 @@ The `Mod` key for `dwm` is set to the Super (windows) key, because combinations
 of the default mod key Alt are used by programs like Firefox.
 
 This `dwm` build has been patched with the following additional functionality
-* `xrdb` patch, which allows `dwm` to read colors from the `Xresources` at
+* `xrdb` patch, which enables `dwm` to read colors from the `Xresources` at
   runtime.
   This allows `dwm`'s theme to be changed dynamically e.g. when the background
   is changed (more on this later).
@@ -56,7 +56,10 @@ This `dwm` build has been patched with the following additional functionality
 * `moveresize` patch which allows moving and resizing floating windows using
   the keyboard.
 
-Here are the major keybindings:
+#### Keybindings
+
+This is a (probably not comprehensive) list of the keybindings in this `dwm`
+build.
 
 * __Go to tag__: `Mod+[num]` where `num` is the tag number
 * __Shift between tags__: `Mod+i` and `Mod+o` shift to the previous and next
@@ -65,6 +68,9 @@ Here are the major keybindings:
 * __Window navigation__: Use `Mod+j` and `Mod+k` to navigate windows on a tag.
     Note that this only changes focus, use `Mod+Enter` to swap the focused
     window in the stack and the master window.
+    This is layout-independent.
+* __Full-screen a window__: `Mod+Shift+f`.
+  This operation is its own inverse.
 * __Kill window__: To kill the program running in a window, run `Mod+Shift+C`.
 * __Kill `dwm`__: To kill `dwm` (maybe to test your changes), run
   `Mod+Shift+Q`.
@@ -107,8 +113,6 @@ Here are the major keybindings:
   * `Mod+m` switches to the monocle layout.
     This layout stacks the windows on top of each other, master being on the
     top (visible) and the rest being beneath.
-    The same keybindings apply to switch between windows as in the tiling
-    layout.
 
 * __Move window to tag__: `Mod+Shift+[num]` where `num` is the tag number.
   This moves the selected window to tag `num`.
@@ -127,6 +131,37 @@ Here are the major keybindings:
   Then, press `Mod+Shift+0` to make it appear on every tag.
   You can then use the keybindings for floating windows to resize/move the
   picture-in-picture window around.
+* __Additionally show window on specific tag__: Focus on a window and press
+  `Mod+Ctrl+Shift+[num]` where `num` is the tag number.
+  This adds the window to tag `num` as well as the tag it's currently in.
+  This operation is its own inverse.
+
+### [`st`](https://st.suckless.org)
+
+In this `st` build, the `Mod` key is `Alt` and the `Termmod` is `Ctrl+Shift`.
+
+This `st` build has been patched with the following additional functionality.
+
+* `xresources` patch, which enables `st` to read colors from the `Xresources`.
+  This allows `st`'s theme to be changed dynamically e.g. when the background
+  is changed (more on this later).
+* `dynamic-color-cursor` patch which helps to make the cursor more visible.
+* `vim_browse` patch which adds scroll-back and a Vim-like normal mode (to move
+  through scroll-back, select and yank to clipboard).
+
+#### Keybindings
+
+* __Font size__: Use `Ctrl+equals` and `Ctrl+minus` to increase and decrease
+  the font size respectively.
+  Use `Termmod+Esc` to reset the font size to default.
+* __Scroll-back navigation__: Press `Mod+c` to enter a Vim-like environment
+  where navigation through the scroll-back buffer is possible using normal Vim
+  keys.
+  Selected text can be copied to the clipboard by yanking it.
+  Mouse scrolling will not move through the scroll-back buffer.
+  See [here](https://st.suckless.org/patches/vim_browse/) for more information.
+* __Copy Paste__: `Termmod+v` pastes clipboard contents and `Termmod+c` copies
+  selected text to the clipboard.
 
 ## Misc
 
