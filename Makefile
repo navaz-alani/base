@@ -10,8 +10,8 @@ dwm:
 	@echo "==> Done."
 
 dwmstat:
-	@echo "==> Compiling and installing dwmstat..."
-	cd dwmstat && make install
+	@echo "==> Compiling and installing dwmstat (may be prompted for password)..."
+	cd dwmstat && make && sudo make install
 	@echo "==> Done."
 
 st:
