@@ -10,9 +10,8 @@ if [ -z "${1}" ]; then
   exit 1
 fi
 
-SOCK="/tmp/dwmstat_sig"
-
-if [ ! -S "${SOCK}" ]; then
+# use the dwmstat socket named in the environment
+if [ ! -S "${DWMSTAT_SOCK}" ]; then
   echo "${0##*/} [ERROR] dwmstat does not seem to be running"
   exit 1
 fi
@@ -22,6 +21,6 @@ case "${1}" in
     die
     ;;
   *)
-    printf "${1}" | socat UNIX-CONNECT:${SOCK} -
+    printf "${1}" | socat UNIX-CONNECT:${DWMSTAT_SOCK} -
     ;;
 esac

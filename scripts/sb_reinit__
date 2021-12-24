@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# throw no 
+
+if [ ! -f "${DWMSTAT_PID_FILE}" ]; then
+  echo "dwmstat does not seem to be running"
+  echo "will not do anything... exiting."
+  exit 0
+fi
+
+DWMSTAT_PID=`cat "${DWMSTAT_PID_FILE}"`
+
+printf "terminating dwmstat in this graphical context (pid ${DWMSTAT_PID})..."
+kill "${DWMSTAT_PID}"
+printf "\tdone\n"
+printf "starting new dwmstat instance..."
+dwmstat --sock="${DWMSTAT_SOCK}"  &
+echo $! > "${DWMSTAT_PID_FILE}"
+disown
+printf "\tdone\n"
+echo "recorded new pid in ${DWMSTAT_PID_FILE}"
