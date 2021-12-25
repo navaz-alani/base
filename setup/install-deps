@@ -5,7 +5,7 @@ pacman_deps=`cat << EOF
 xorg-server xorg-xinit xorg-xbacklight
 xbindkeys xdotool
 libxinerama
-noto-fonts noto-fonts-extra noto-fonts-cjk ttf-font-awesome ttf-joypixels
+noto-fonts noto-fonts-extra noto-fonts-cjk ttf-joypixels
 sxiv python-pywal feh
 util-linux
 go socat
@@ -15,10 +15,12 @@ inotify-tools
 mpv
 rofi
 git
+zsh
 EOF
 `
 
 aur_deps=`cat << EOF
+ttf-meslo-nerd-font-powerlevel10k
 libxft-bgra
 EOF
 `
@@ -40,7 +42,7 @@ case "${continue}" in
 esac
 
 sudo pacman -Sy # sync repos first
-sudo pacman -S ${pacman_deps}
+sudo pacman -S --noconfirm ${pacman_deps}
 if [ $? -ne 0 ]; then
   echo "==> error installing dependencies!"
   exit 1
@@ -48,30 +50,32 @@ else
   echo "==> dependencies installed!"
 fi
 
-
-echo "==> Installing yay AUR helper...\n"
-git clone https://aur.archlinux.org/yay-git.git
+# check if yay is already installed
+which yay
 if [ $? -ne 0 ]; then
-  echo "==> error downloading yay"
-  exit 1
+  echo "==> Installing yay AUR helper...\n"
+  git clone https://aur.archlinux.org/yay-git.git
+  if [ $? -ne 0 ]; then
+    echo "==> error downloading yay"
+    exit 1
+  fi
+  cd yay-git
+  makepkg -si
+  if [ $? -ne 0 ]; then
+    echo "==> error installing yay"
+    exit 1
+  fi
+  printf "==> installed yay; cleaning up..."
+  cd .. && rm -rf yay-git
+  printf "\tdone\n"
 fi
-cd yay-git
-makepkg -si
-if [ $? -ne 0 ]; then
-  echo "==> error installing yay"
-  exit 1
-fi
-printf "==> installed yay; cleaning up..."
-cd .. && rm -rf yay-git
-printf "\tdone\n"
 
 printf "==> Installing AUR dependencies...\n"
-sudo yay -Sy # sync repos first
+yay -Sy # sync repos first
+yay -S --noconfirm ${aur_deps}
 if [ $? -ne 0 ]; then
   echo "error installing AUR dependencies!"
   exit 1
 else
-  echo "==> dependencies installed!"
-  echo "==> run 'make bootstrap' to bootstrap the system"
+  echo "==> dependencies installed"
 fi
-sudo yay -S ${aur_deps}
