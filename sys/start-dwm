@@ -1,0 +1,16 @@
+#!/bin/bash
+
+dwm_checksum=""
+new_dwm_checksum="$(sha1sum `which dwm`)"
+while true
+do
+    if [ "${dwm_checksum}" != "${new_dwm_checksum}" ]
+    then
+        dwm_checksum="${new_dwm_checksum}"
+        dwm
+    else
+        exit 0
+    fi
+    new_dwm_checksum="$(sha1sum `which dwm`)"
+    sleep 0.5
+done

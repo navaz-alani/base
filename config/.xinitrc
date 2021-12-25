@@ -26,8 +26,7 @@ xbindkeys -f ~/.config/base/config/.xbindkeysrc
 # set a random background
 chbg rand
 
-# no `exec` here since we want to run some code after dwm exits
-dwm
+exec ~/.config/base/sys/start-dwm
 
 # kill dwmstat instance spawned
 if [ -f "${DWMSTAT_PID_FILE}" ]; then
