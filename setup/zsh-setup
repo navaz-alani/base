@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# check if yay is installed
+which yay &>/dev/null
+if [ $? -ne 0 ]; then
+	echo "yay not installed!"
+	echo "have you run the install_deps script?"
+	exit 1
+fi
+
+# prompt for confirmation
+echo "==> This script will setup zsh:"
+printf "\ttheme (powerlevel10k)\n"
+printf "==> Continue [y/n]? "
+read cont
+
+case "${cont}" in
+	y | yes)
+		echo "==> Installing powerlevel10k from the AUR"
+		yay -S --noconfirm zsh-theme-powerlevel10k-git
+		if [ $? -ne 0 ]; then
+			echo "==> error installing from AUR!"
+			exit 1
+		fi
+		echo "==> Configuring zsh to use the theme"
+		echo 'source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme' >> \
+			"${HOME}/.config/zsh/.zshrc"
+		if [ $? -ne 0 ]; then
+			echo "==> seems like the zsh config file is not found"
+			echo "==> have you run 'make zsh_config'?"
+			exit 1
+		fi
+		echo "==> Done."
+		echo ""
+		;;
+	*)
+		echo "Aborting"
+		exit 0 # the user chose not to install; not an error
+		;;
+esac
