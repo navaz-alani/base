@@ -6,27 +6,28 @@ general, this should work if `pacman` is available).
 
 ## Setup
 
-Clone this repository into the `~/.config` directory (do so recursively to also
-clone the `dwmstat` repository).
+Clone this repository into the `~/.config`:
+
+```bash
+mkdir -p ~/.config
+git clone https://github.com/navaz-alani/base.git ~/.config/base
+```
+
 Do not rename it as the name is used in some of the configuration.
 
-After cloning, you can install all the dependencies, compile and install the
-programs using the `install-deps.sh` script.
-Now run `make` (or `make bootstrap`, no difference) to compile and install
-`dwm` and `dwmstat`, as well as forcefully hard-link some application
-configurations into place.
+After cloning, just run `make bootstrap` to
+
+* install the dependencies (see `setup/install-deps` script)
+* compile & install `dwm`, `dwmstat`, `st`
+* link up various application configs
+* set-up zsh (see `setup/zsh-setup` script); this currently just installs a
+  nice poweline theme, but I plan to get plugins working
 
 After the `make` step is successfully completed, running `startx` in a TTY
 should bring up a graphical environment, the details of which are discussed
 later.
 
-## Shell Configuration
-
-Add `source ~/.config/base/cfg` to the `.zshrc` (or equivalent) file.
-This will augment the `PATH` variable to make the custom scripts available from
-any working directory, as well as source the `aliases` file.
-
-## Specifications
+## Build Details
 
 At a high level, this build uses the following major programs
 
@@ -164,6 +165,10 @@ This `st` build has been patched with the following additional functionality.
   selected text to the clipboard.
 
 ## Misc
+
+### Keybindings
+
+* `Super+p` brings up `rofi` to select an application to run.
 
 ### Changing Desktop Background (`chbg`)
 
