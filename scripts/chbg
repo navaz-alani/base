@@ -12,7 +12,7 @@ setbg() {
 case "${1}" in
   *rand)
     # chose a random background image
-    bg=`ls ${CFG_BASE}/backgrounds/* | shuf | head -n1`
+    bg=`ls ${CFG_BASE}/backgrounds/* | shuf -n1`
     setbg "${bg}"
     ;;
   *choose)
