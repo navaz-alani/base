@@ -12,6 +12,7 @@ go socat
 dunst
 pamixer
 inotify-tools
+scrot
 mpv
 rofi
 git

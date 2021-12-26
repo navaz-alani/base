@@ -6,4 +6,6 @@ export PATH="${PATH}:${HOME}/.local/bin:${CFG_BASE}/scripts:${CFG_BASE}/bin"
 export BROWSER="firefox"
 export EDITOR="nvim"
 
+export SCREENSHOTS_DIR="${HOME}/media/screenshots"
+
 source "${CFG_BASE}/aliases"

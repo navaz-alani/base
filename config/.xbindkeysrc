@@ -1,11 +1,9 @@
-# Increase volume
 "vol up"
    XF86AudioRaiseVolume
 
 "vol down"
    XF86AudioLowerVolume
 
-# Mute volume
 "vol mute"
    XF86AudioMute
 
@@ -14,3 +12,15 @@
 
 "brightness down"
   XF86MonBrightnessDown
+
+# bring up background chooser
+"chbg choose"
+  Shift+Mod4 + b
+
+# change to a random background
+"chbg rand"
+  Control+Shift+Mod4 + b
+
+# launch the screenshot utility
+"screenshot"
+  Control+Mod4 + s

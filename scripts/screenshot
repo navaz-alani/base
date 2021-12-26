@@ -1,0 +1,33 @@
+#!/bin/bash
+# a simple screenshot utility
+
+if [ ! -d "${SCREENSHOTS_DIR}" ]; then
+	mkdir -p "${SCREENSHOTS_DIR}"
+fi
+
+selected_mode=`printf 'Screen\nWindow\nSelection' |
+	rofi -dmenu ${modes} -p 'Select screenshot mode'`
+if [ $? -ne 0 ]; then
+	exit 1
+fi
+
+filename="${SCREENSHOTS_DIR}/screenshot-`date +%d_%m_%y-%T`.png"
+
+case "${selected_mode}" in
+	Screen)
+		scrot -
+		;;
+	Window)
+		scrot -ub -
+		;;
+	Selection)
+		scrot -s -
+		;;
+	*)
+		exit 1
+		;;
+esac > ${filename}
+
+if [ $? -eq 0 ]; then
+	notify-send "Screenshot taken" "Saved in ${filename}"
+fi

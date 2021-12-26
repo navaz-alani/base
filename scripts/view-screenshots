@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [[ ! -d "${SCREENSHOTS_DIR}" || `ls "${SCREENSHOTS_DIR}" | wc -l` == "0"  ]]; then
+	rofi -e "No screenshots to view"
+	exit 1
+fi
+
+sxiv -t "${HOME}/media/screenshots"
