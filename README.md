@@ -169,6 +169,29 @@ This `st` build has been patched with the following additional functionality.
 ### Keybindings
 
 * `Super+p` brings up `rofi` to select an application to run.
+* `Super+Shift + b` brings up a background selection utility.
+* `Super+Ctrl+Shift + b` selects a random background and sets it.
+* `Super+Ctrl + s` brings up a screenshotting utility.
+
+Keybindingds can be added through in the `config/.xbindkeysrc` file.
+
+### Screenshotting (`screenshot` and `view-screenshots`)
+
+A simple script called `screenshot`, which can be launched using `Super+Ctrl+s`
+brings up `rofi` to enable the user to select between "Screen", "Window" and
+"Selection" modes of taking a screenshot (which are pretty self explanatory).
+
+Note, however, that "Window" mode takes a sceenshot of the currently focused
+window, so make sure you focus on the window before taking  the screenshot!
+
+Screenshots are stored in the `SCREENSHOTS_DIR` directory, which by default is
+set to `~/media/screenshots` and named
+`screenshot-[DD]_[MM]_[YY]-[hh]:[mm]:[ss].png`.
+These can be changed by editing the `cfg` file and the `screenshot` script
+respectively.
+
+To view captured screenshots, the `view-screenshot` script can be used (launch
+it using `rofi`, or if you frequently use it, make a key-binding for it).
 
 ### Changing Desktop Background (`chbg`)
 
