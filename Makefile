@@ -1,6 +1,6 @@
 CONFIG_DIR=~/.config
 .PHONY: bootstrap dwm st dwmstat \
-		xinit_config sxiv_config rofi_config zsh_config
+		xinit_config sxiv_config rofi_config zsh_config dunst_config
 
 bootstrap:
 	@echo "==> Bootstrapping the system"
@@ -52,3 +52,9 @@ zsh_config: ./config/zsh/.zshrc
 	mkdir -p ${CONFIG_DIR}/zsh
 	ln -f $^ ${CONFIG_DIR}/zsh
 	@echo "==> Done (if you haven't, run zsh_setup)."
+
+dunst_config: ./config/dunst/dunstrc
+	@echo "==> Forcefully hard-linking dunst config..."
+	mkdir -p ${CONFIG_DIR}/dunst
+	ln -f $^ ${CONFIG_DIR}/dunst
+	@echo "==> Done."
