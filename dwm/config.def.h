@@ -3,11 +3,11 @@
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
-static const Gap default_gap        = {.isgap = 1, .realgap = 10, .gappx = 5};
+static const Gap default_gap        = {.isgap = 1, .realgap = 10, .gappx = 20 };
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int user_bh            = 30;       /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
-static const char *fonts[]          = { "SourceCodePro:size=13", "JoyPixels" };
+static const char *fonts[]          = { "MesloLGS NF:size=13" };
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
 static char normfgcolor[]           = "#bbbbbb";
@@ -23,9 +23,9 @@ static char *colors[][3] = {
 /* tagging */
 /*
 subscripts ₁₂₃₄₅₆₇₈₉
-font-awesome icon catalogue https://fontawesome.com/v4.7/cheatsheet/
+nerd fonts: https://www.nerdfonts.com/cheat-sheet
 */
-static const char *tags[] = { "₁", "🌍₂", "3", "4", "5", "6", "7", "8", "🎶" };
+static const char *tags[] = { "₁", "₂", "3", "4", "5", "6", "7", "8", "阮" };
 
 static const Rule rules[] = {
 	/* xprop(1):
