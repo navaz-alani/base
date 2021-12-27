@@ -1,5 +1,6 @@
 CONFIG_DIR=~/.config
 .PHONY: bootstrap dwm st dwmstat \
+		theme_setup \
 		xinit_config sxiv_config rofi_config zsh_config dunst_config
 
 bootstrap:
@@ -25,6 +26,19 @@ st:
 	@echo "==> Compiling and installing st (may require password)..."
 	cd st && make clean && make && sudo make install
 	@echo "==> Done."
+
+# Theme setup
+
+X_ICO_THEME=./config/theme/index.theme
+GTK3_SETTINGS=./config/theme/gtk-3.0-settings.ini
+
+theme_setup: ${X_ICO_THEME} ${GTK3_SETTINGS}
+	@echo "==> Changing the local system icon theme (may require password)..."
+	sudo cp ${X_ICO_THEME} /usr/share/icons/default/index.theme
+	@echo "==> Setting configuring GTK3.0 icon theme..."
+	mkdir -p ${CONFIG_DIR}/gtk-3.0
+	ln -f ${GTK3_SETTINGS} ${CONFIG_DIR}/gtk-3.0/settings.ini
+
 
 # Application configs
 
@@ -55,11 +69,6 @@ zsh_config: ./config/zsh/.zshrc
 	ln -f $^ ${CONFIG_DIR}/zsh
 	@echo "==> Done (if you haven't, run zsh_setup)."
 
-picom_config: ./config/picom/picom.conf
-	@echo "==> Forcefully hard-linking picom config..."
-	mkdir -p ${CONFIG_DIR}
-	ln -f $^ ${CONFIG_DIR}
-	@echo "==> Done."
 
 dunst_config: ./config/dunst/dunstrc
 	@echo "==> Forcefully hard-linking dunst config..."

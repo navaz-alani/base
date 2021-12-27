@@ -4,6 +4,7 @@
 pacman_deps=`cat << EOF
 xorg-server xorg-xinit xorg-xbacklight
 xbindkeys xdotool
+xcursor-breeze
 libxinerama
 noto-fonts noto-fonts-extra noto-fonts-cjk ttf-joypixels
 sxiv python-pywal feh
