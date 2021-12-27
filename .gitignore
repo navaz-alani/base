@@ -8,3 +8,7 @@ bin/dwmstat
 # patching leftovers
 *.orig
 *.rej
+
+# overwritten configs & backups
+config/dunst/dunstrc
+**/*.bak

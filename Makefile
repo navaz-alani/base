@@ -58,3 +58,7 @@ dunst_config: ./config/dunst/dunstrc
 	mkdir -p ${CONFIG_DIR}/dunst
 	ln -f $^ ${CONFIG_DIR}/dunst
 	@echo "==> Done."
+
+%: %.def
+	@echo "==> Using default config $^"
+	cp $^ $@
