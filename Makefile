@@ -40,9 +40,11 @@ sxiv_config: ./config/sxiv/key-handler
 	@echo "==> Done."
 
 rofi_config: ./config/rofi/config.rasi
-	@echo "==> Forcefully hard-linking rofi config..."
+	@echo "==> Copying default rofi theme files into place..."
 	mkdir -p ${CONFIG_DIR}/rofi
-	ln -f $^ ${CONFIG_DIR}/rofi
+	cp -r ./config/rofi/themes ${CONFIG_DIR}/rofi
+	@echo "==> Forcefully hard-linking rofi config..."
+	ln -f $< ${CONFIG_DIR}/rofi
 	@echo "==> Done."
 
 zsh_config: ./config/zsh/.zshrc
@@ -52,6 +54,12 @@ zsh_config: ./config/zsh/.zshrc
 	mkdir -p ${CONFIG_DIR}/zsh
 	ln -f $^ ${CONFIG_DIR}/zsh
 	@echo "==> Done (if you haven't, run zsh_setup)."
+
+picom_config: ./config/picom/picom.conf
+	@echo "==> Forcefully hard-linking picom config..."
+	mkdir -p ${CONFIG_DIR}
+	ln -f $^ ${CONFIG_DIR}
+	@echo "==> Done."
 
 dunst_config: ./config/dunst/dunstrc
 	@echo "==> Forcefully hard-linking dunst config..."
