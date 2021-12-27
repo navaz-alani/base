@@ -1,0 +1,5 @@
+- [x] setup dunst to read theme
+- [X] setup rofi to read theme
+- [X] setup gtk theme (cursors)
+- [ ] move xinirtrc and related files to X11 config dir
+- [x] checkout picom

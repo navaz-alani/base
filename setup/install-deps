@@ -24,6 +24,7 @@ EOF
 aur_deps=`cat << EOF
 ttf-meslo-nerd-font-powerlevel10k
 libxft-bgra
+nordic-theme-git
 EOF
 `
 
