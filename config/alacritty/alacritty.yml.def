@@ -1,0 +1,35 @@
+font:
+  size: 9.0
+  normal:
+    family: MesloLGS NF
+    style: Medium
+  bold:
+    family: MesloLGS NF
+  italic:
+    family: MesloLGS NF
+
+colors:
+  primary:
+    background: "#1a1422"
+    foreground: "#bea4a9"
+  cursor:
+    text:       "#1a1422"
+    cursor:     "#bea4a9"
+  normal:
+    black:      "#1a1422"
+    red:        "#CD663B"
+    green:      "#DA6A38"
+    yellow:     "#8F4F47"
+    blue:       "#944844"
+    magenta:    "#AB5B42"
+    cyan:       "#AA635D"
+    white:      "#bea4a9"
+  bright:
+    black:      "#857276"
+    red:        "#CD663B"
+    green:      "#DA6A38"
+    yellow:     "#8F4F47"
+    blue:       "#944844"
+    magenta:    "#AB5B42"
+    cyan:       "#AA635D"
+    white:      "#bea4a9"
