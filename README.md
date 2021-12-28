@@ -6,11 +6,11 @@ general, this should work if `pacman` is available).
 
 ## Setup
 
-Clone this repository into the `~/.config`:
+Clone this repository (and submodules) into the `~/.config`:
 
 ```bash
 mkdir -p ~/.config
-git clone https://github.com/navaz-alani/base.git ~/.config/base
+git --recurse-submodules clone https://github.com/navaz-alani/base.git ~/.config/base
 ```
 
 Do not rename it as the name is used in some of the configuration.
@@ -214,3 +214,9 @@ in quick succession.
 
 * All scripts in the `scripts` directory which begin with `sb_` are for use
   with the status bar.
+
+### TODO
+
+- [ ] ACPI handling (so the system doesn't power off when power button is clicked)
+- [ ] Handle audio events e.g. headphones plugged in and refresh bar
+- [ ] Work on a dwm patch to inform status bar module where it was clicked

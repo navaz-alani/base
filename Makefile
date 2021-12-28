@@ -8,9 +8,12 @@ bootstrap:
 	@echo "==> Installing dependencies..."
 	./setup/install-deps
 	@make dwm dwmstat st
-	@make zsh_config xinit_config sxiv_config rofi_config
+	@echo "==> Configuring programs..."
+	@make zsh_config xinit_config sxiv_config rofi_config dunst_config
 	@echo "==> Setting up zsh"
 	./setup/zsh-setup
+	@echo "==> Setting up theme..."
+	@make theme_setup
 
 dwm:
 	@echo "==> Compiling and installing dwm (may require password)..."
