@@ -22,10 +22,25 @@ After cloning, just run `make bootstrap` to
 * link up various application configs
 * set-up zsh (see `setup/zsh-setup` script); this currently just installs a
   nice poweline theme, but I plan to get plugins working
+* set-up the pleasant Nordic GTK theme system-wide (and Breeze cursor set)
 
-After the `make` step is successfully completed, running `startx` in a TTY
-should bring up a graphical environment, the details of which are discussed
-later.
+After the `make` step is successfully completed, your shell will have been
+changed to `zsh`.
+You need to re-login for certain environment variables to be set-up properly
+and all the scripts to work as expected.
+
+After re-logging-in, running `startx` in a TTY should bring up a graphical
+environment, the details of which are discussed later.
+If you have any problems, on the initial `startx` invocation, try restart your
+machine OR ensure that the drivers for your graphics card have been installed
+(this setup process does not attempt to do that!).
+See [here](https://wiki.archlinux.org/title/Xorg#Driver_installation) for more
+information on driver installation (tip: use `neofetch` to name the installed
+graphics card).
+
+__NOTE__: `startx` is aliased to point to the `xinitrc` configuration, which is
+intentionally not located in the home directory to prevent clutter.
+You can find the `xinitrc` file at `config/x11/xinitrc`.
 
 ## Build Details
 
@@ -33,8 +48,10 @@ At a high level, this build uses the following major programs
 
 * (patched) `dwm` as the window manager
 * (custom) `dwmstat` as the status bar
-* (patched) `st` as the terminal emulator
-* `rofi` as the application launcher
+* (patched) `st` as the terminal emulator (`st` has some cool features, but
+  `alacritty` is also installed - it seems to render glyphs better and,
+  honestly, is much easier to customize)
+* `rofi` as the application launcher, list selection utility, etc.
 
 ### [`dwm`](https://dwm.suckless.org)
 
@@ -220,3 +237,4 @@ in quick succession.
 - [ ] ACPI handling (so the system doesn't power off when power button is clicked)
 - [ ] Handle audio events e.g. headphones plugged in and refresh bar
 - [ ] Work on a dwm patch to inform status bar module where it was clicked
+- [ ] zsh plugins

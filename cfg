@@ -9,3 +9,5 @@ export EDITOR="nvim"
 export SCREENSHOTS_DIR="${HOME}/media/screenshots"
 
 source "${CFG_BASE}/aliases"
+
+alias startx="startx ${CFG_BASE}/config/x11/xinitrc"

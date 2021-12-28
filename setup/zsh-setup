@@ -8,8 +8,22 @@ if [ $? -ne 0 ]; then
 	exit 1
 fi
 
+echo "==> Setting zsh as the user's shell..."
+zsh_path=`which zsh`
+if [ $? -ne 0 ]; then
+	echo "==> zsh not installed!"
+	echo "==> have you run the install_deps script?"
+	exit 1
+fi
+chsh -s "${zsh_path}"
+if [ $? -ne 0 ]; then
+	echo "==> failed to change shells!"
+	exit 1
+fi
+echo "==> Done."
+
 # prompt for confirmation
-echo "==> This script will setup zsh:"
+echo "==> Now setting-up zsh:"
 printf "\ttheme (powerlevel10k)\n"
 printf "==> Continue [y/n]? "
 read cont

@@ -13,6 +13,7 @@ util-linux
 go socat
 dunst
 pamixer
+neofetch
 inotify-tools
 scrot
 mpv

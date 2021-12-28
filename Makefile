@@ -1,8 +1,7 @@
 CONFIG_DIR=~/.config
 .PHONY: bootstrap dwm st dwmstat \
 		theme_setup \
-		xinit_config sxiv_config rofi_config zsh_config dunst_config \
-		alacritty_config
+		sxiv_config rofi_config zsh_config dunst_config alacritty_config
 
 bootstrap:
 	@echo "==> Bootstrapping the system"
@@ -10,8 +9,7 @@ bootstrap:
 	./setup/install-deps
 	@make dwm dwmstat st
 	@echo "==> Configuring programs..."
-	@make zsh_config xinit_config sxiv_config rofi_config dunst_config \
-		alacritty_config
+	@make zsh_config sxiv_config rofi_config dunst_config alacritty_config
 	@echo "==> Setting up zsh"
 	./setup/zsh-setup
 	@echo "==> Setting up theme..."
@@ -46,11 +44,6 @@ theme_setup: ${X_ICO_THEME} ${GTK3_SETTINGS}
 
 
 # Application configs
-
-xinit_config: ./config/.xinitrc
-	@echo "==> Forcefully hard-linking xinit config..."
-	ln -f $^ ~
-	@echo "==> Done."
 
 sxiv_config: ./config/sxiv/key-handler
 	@echo "==> Forcefully hard-linking sxiv config..."
