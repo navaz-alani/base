@@ -4,7 +4,7 @@ This repository contains my Arch/Artix build.
 It is set up so that it can bootstrap a bare installation of Arch/Artix (in
 general, this should work if `pacman` is available).
 
-[Desktop with Alacritty open](images/desktop_alacritty.png)
+![Desktop with Alacritty open](images/desktop_alacritty.png)
 
 ## Setup
 
