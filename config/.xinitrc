@@ -20,16 +20,14 @@ dwmstat --sock="${DWMSTAT_SOCK}" &
 # existance of the file DWMSTAT_PID_FILE
 echo $! > "${DWMSTAT_PID_FILE}"
 
-# some scripts in the handlers need the DWMSTAT_SOCK variable
-xbindkeys -f ~/.config/base/config/.xbindkeysrc
+# some scripts in the keybinding handlers need the DWMSTAT_SOCK variable
+keybindings=~/.config/base/config/.xbindkeysrc
+[ -f "${keybindings}" ] && xbindkeys -f "${keybindings}"
+
+resources=~/.config/base/config/x11/.xresources
+[ -f "${resources}" ] && xrdb -merge "${resources}"
 
 # set a random background
 chbg rand
 
 exec ~/.config/base/sys/start-dwm
-
-# kill dwmstat instance spawned
-if [ -f "${DWMSTAT_PID_FILE}" ]; then
-  kill `cat "${DWMSTAT_PID_FILE}"`
-  rm "${DWMSTAT_PID_FILE}"
-fi

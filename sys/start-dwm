@@ -14,3 +14,9 @@ do
     new_dwm_checksum="$(sha1sum `which dwm`)"
     sleep 0.5
 done
+
+# kill dwmstat instance spawned
+if [ -f "${DWMSTAT_PID_FILE}" ]; then
+  kill `cat "${DWMSTAT_PID_FILE}"`
+  rm "${DWMSTAT_PID_FILE}"
+fi
