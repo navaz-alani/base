@@ -8,6 +8,7 @@ xcursor-breeze
 libxinerama
 noto-fonts noto-fonts-extra noto-fonts-cjk ttf-joypixels
 sxiv python-pywal feh
+alacritty
 util-linux
 go socat
 dunst

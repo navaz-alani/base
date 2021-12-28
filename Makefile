@@ -1,7 +1,8 @@
 CONFIG_DIR=~/.config
 .PHONY: bootstrap dwm st dwmstat \
 		theme_setup \
-		xinit_config sxiv_config rofi_config zsh_config dunst_config
+		xinit_config sxiv_config rofi_config zsh_config dunst_config \
+		alacritty_config
 
 bootstrap:
 	@echo "==> Bootstrapping the system"
@@ -9,7 +10,8 @@ bootstrap:
 	./setup/install-deps
 	@make dwm dwmstat st
 	@echo "==> Configuring programs..."
-	@make zsh_config xinit_config sxiv_config rofi_config dunst_config
+	@make zsh_config xinit_config sxiv_config rofi_config dunst_config \
+		alacritty_config
 	@echo "==> Setting up zsh"
 	./setup/zsh-setup
 	@echo "==> Setting up theme..."
@@ -74,10 +76,16 @@ zsh_config: ./config/zsh/.zshrc
 
 
 dunst_config: ./config/dunst/dunstrc
-	@echo "==> Forcefully hard-linking dunst config..."
+	@echo "==> forcefully hard-linking dunst config..."
 	mkdir -p ${CONFIG_DIR}/dunst
 	ln -f $^ ${CONFIG_DIR}/dunst
-	@echo "==> Done."
+	@echo "==> done."
+
+alacritty_config: ./config/alacritty/alacritty.yml
+	@echo "==> forcefully hard-linking alacritty config..."
+	mkdir -p ${CONFIG_DIR}/alacritty
+	ln -f $^ ${CONFIG_DIR}/alacritty
+	@echo "==> done."
 
 %: %.def
 	@echo "==> Using default config $^"

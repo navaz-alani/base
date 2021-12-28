@@ -11,4 +11,5 @@ bin/dwmstat
 
 # overwritten configs & backups
 config/dunst/dunstrc
+config/alacritty/alacritty.yml
 **/*.bak

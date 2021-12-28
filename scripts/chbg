@@ -15,7 +15,7 @@ update_schemes() {
 		[ -f ${f} ] && cp "${f}" "${rofi_themes_dir}"
 	done
 
-	# ==> dunst theme setup
+	# ==> dunst, alacritty theme setup
 	# read the scheme that pywal generated
 	if [ ! -f "${GENERATED_SCHEME}/colors.sh" ]; then
 		return
@@ -23,21 +23,25 @@ update_schemes() {
 
 	dunstrc="${CFG_BASE}/config/dunst/dunstrc"
 	dunstrc_tmpl="${CFG_BASE}/config/dunst/dunstrc.tmpl"
+	alacrittyrc="${CFG_BASE}/config/alacritty/alacritty.yml"
+	alacrittyrc_tmpl="${CFG_BASE}/config/alacritty/alacritty.yml.tmpl"
 
 	source "${GENERATED_SCHEME}/colors.sh"
 	# compile sed commands to populate the templates
-	dunst_sub=""
+	sub=""
 	for i in `seq 0 15`; do
 		# first of all, resolve the color from the sourced file
 		cmd='echo $color'
 		col=`eval "${cmd}${i}"`
-		dunst_sub+="; s/|color${i}|/${col}/"
+		sub+="; s/|color${i}|/${col}/"
 	done
 
 	# make a backup copy of the existing configs (only one maintained for now)
 	[ -f "${dunstrc}" ] && cp "${dunstrc}" "${dunstrc}.bak"
+	[ -f "${alacrittyrc}" ] && cp "${alacrittyrc}" "${alacrittyrc}.bak"
 	# run the substitution; clobber existing configs
-	sed "${dunst_sub}" "${dunstrc_tmpl}" > "${dunstrc}"
+	sed "${sub}" "${dunstrc_tmpl}" > "${dunstrc}"
+	sed "${sub}" "${alacrittyrc_tmpl}" > "${alacrittyrc}"
 	# restart dunst so the new scheme is in effect
 	# Q: what happens when a notification is posted, when dunst is being
 	#    restarted!
