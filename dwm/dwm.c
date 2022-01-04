@@ -2092,8 +2092,14 @@ unmanage(Client *c, int destroyed)
 		XSetErrorHandler(xerror);
 		XUngrabServer(dpy);
 	}
-	if (m->pertag->focused[m->pertag->curtag] == c)
-	    m->pertag->focused[m->pertag->curtag] = NULL;
+	{
+	    int tag_mask = 1;
+	    for (int i = 0; i < LENGTH(tags); i++) {
+		if (c->tags & tag_mask && m->pertag->focused[tag_mask] == c)
+		    m->pertag->focused[tag_mask] = NULL;
+		tag_mask <<= 1;
+	    }
+	}
 	free(c);
 	focus(NULL);
 	updateclientlist();
