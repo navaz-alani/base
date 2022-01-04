@@ -1,3 +1,3 @@
 [submodule "dwmstat"]
 	path = dwmstat
-	url = git@github.com:navaz-alani/dwmstat.git
+	url = https://github.com/navaz-alani/dwmstat.git

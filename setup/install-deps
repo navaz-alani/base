@@ -20,6 +20,8 @@ mpv
 rofi
 git
 zsh
+ripgrep
+neovim
 EOF
 `
 

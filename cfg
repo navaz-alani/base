@@ -1,13 +1,21 @@
-export CFG_BASE="${HOME}/.config/base/"
+export CFG_BASE="${HOME}/.config/base"
 
 # add the scripts & bin directories to the path
-export PATH="${PATH}:${HOME}/.local/bin:${CFG_BASE}/scripts:${CFG_BASE}/bin:${CFG_BASE}/sys"
+path="${PATH}:${HOME}/.local/bin"
+path="${path}:${CFG_BASE}/scripts"
+path="${path}:${CFG_BASE}/bin:${CFG_BASE}/sys"
+path="${path}:${HOME}/.local/share/nvim/lsp_servers"
+export PATH="${path}"
 
 export BROWSER="firefox"
 export EDITOR="nvim"
+export GPG_TTY=$(tty)
 
 export SCREENSHOTS_DIR="${HOME}/media/screenshots"
 
 source "${CFG_BASE}/aliases"
+# Store sensitive environment variables/config goes in the sensitive config;
+export SENSITIVE_CFG="${HOME}/.config/sensitive.cfg"
+[ -f  "${SENSITIVE_CFG}" ] && source "${SENSITIVE_CFG}"
 
 alias startx="startx ${CFG_BASE}/config/x11/xinitrc"

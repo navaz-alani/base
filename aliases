@@ -12,9 +12,12 @@ alias gst='git status'
 alias gl='git pull'
 alias gp='git push'
 alias ga='git add'
-alias gc='git commit -s' # NOTE: need GPG keys properly setup
+alias gc='git commit -S' # NOTE: need GPG keys properly setup
 alias gd='git diff'
 alias glog='git log --oneline --decorate --graph'
 
 # kitty
 alias icat='kitty +kitten icat'
+
+# fzf
+export FZF_DEFAULT_COMMAND='rg --files'
