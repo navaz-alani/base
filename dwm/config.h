@@ -6,8 +6,8 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const Gap default_gap        = {.isgap = 1, .realgap = 10, .gappx = 20 };
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const int user_bh            = 35;       /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
-static const char *fonts[]          = { "UbuntuMono-Bold:size=17", "MesloLGS NF:size=17" };
+static const int user_bh            = 30;       /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
+static const char *fonts[]          = { "MesloLGS NF:size=13" };
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
 static char normfgcolor[]           = "#bbbbbb";
@@ -25,8 +25,7 @@ static char *colors[][3] = {
 subscripts ₁₂₃₄₅₆₇₈₉
 nerd fonts: https://www.nerdfonts.com/cheat-sheet
 */
-//static const char *tags[] = { "₁", "₂", "3", "4", "5", "6", "7", "₈", "阮₉" }; // PERSONAL profile
-static const char *tags[] = { "₁", "₂", "₃", "力₄", "5", "6", "7", "₈", "阮₉" }; // WORK profile
+static const char *tags[] = { "₁", "₂", "3", "4", "5", "6", "7", "8", "阮" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -66,7 +65,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static const char *roficmd[] = { "rofi", "-show", "run" };
-static const char *termcmd[] = { "alacritty", NULL };
+static const char *termcmd[] = { "st", NULL };
 
 #include "shift-tools.c"
 
@@ -144,7 +143,7 @@ static Button buttons[] = {
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
-//	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
+	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },

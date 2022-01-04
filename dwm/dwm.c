@@ -285,7 +285,7 @@ static void (*handler[LASTEvent]) (XEvent *) = {
 	[ConfigureRequest] = configurerequest,
 	[ConfigureNotify] = configurenotify,
 	[DestroyNotify] = destroynotify,
-//	[EnterNotify] = enternotify,
+	[EnterNotify] = enternotify,
 	[Expose] = expose,
 	[FocusIn] = focusin,
 	[KeyPress] = keypress,
@@ -314,7 +314,6 @@ struct Pertag {
 	unsigned int sellts[LENGTH(tags) + 1]; /* selected layouts */
 	const Layout *ltidxs[LENGTH(tags) + 1][2]; /* matrix of tags and layouts indexes  */
 	int showbars[LENGTH(tags) + 1]; /* display bar for the current tag */
-	Client *focused[LENGTH(tags) + 1]; /* currently focused client */
 };
 
 /* compile-time check if all tags fit into an unsigned int bit array. */
@@ -702,7 +701,6 @@ createmon(void)
 		m->pertag->sellts[i] = m->sellt;
 
 		m->pertag->showbars[i] = m->showbar;
-		m->pertag->focused[i] = NULL;
 	}
 
 	return m;
@@ -850,9 +848,6 @@ expose(XEvent *e)
 void
 focus(Client *c)
 {
-	Client *focused = selmon->pertag->focused[selmon->pertag->curtag];
-	if (c == NULL && focused != NULL)
-	    c = focused;
 	if (!c || !ISVISIBLE(c))
 		for (c = selmon->stack; c && !ISVISIBLE(c); c = c->snext);
 	if (selmon->sel && selmon->sel != c)
@@ -872,7 +867,6 @@ focus(Client *c)
 		XDeleteProperty(dpy, root, netatom[NetActiveWindow]);
 	}
 	selmon->sel = c;
-	selmon->pertag->focused[selmon->pertag->curtag] = c;
 	drawbars();
 }
 
@@ -1175,7 +1169,7 @@ manage(Window w, XWindowAttributes *wa)
 	c->mon->sel = c;
 	arrange(c->mon);
 	XMapWindow(dpy, c->win);
-	focus(c);
+	focus(NULL);
 }
 
 void
@@ -2092,8 +2086,6 @@ unmanage(Client *c, int destroyed)
 		XSetErrorHandler(xerror);
 		XUngrabServer(dpy);
 	}
-	if (m->pertag->focused[m->pertag->curtag] == c)
-	    m->pertag->focused[m->pertag->curtag] = NULL;
 	free(c);
 	focus(NULL);
 	updateclientlist();
