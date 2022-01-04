@@ -80,6 +80,14 @@ alacritty_config: ./config/alacritty/alacritty.yml
 	ln -f $^ ${CONFIG_DIR}/alacritty
 	@echo "==> done."
 
+NVIM_CONFIG_SRC=$(shell find config/nvim/ -name '*.lua' | sed -e "s/^/~\/./")
+nvim_config: ${NVIM_CONFIG_SRC}
+	@echo "==> Copied NVIM config files to CONFIG_DIR"
+
+${CONFIG_DIR}/nvim/%.lua: ./config/nvim/%.lua
+	@mkdir -p ${CONFIG_DIR}/nvim/lua
+	cp $< $@
+
 %: %.def
 	@echo "==> Using default config $^"
 	cp $^ $@
