@@ -4,11 +4,10 @@ vim.mapleader = ' '
 vim.syntax = 'on'
 
 -- TODO tabstop
-vim.o.shiftwidth = 4
-vim.o.tabstop = 8
+vim.o.shiftwidth = 2
+vim.o.tabstop = 2
 vim.o.softtabstop = 0
-vim.o.expandtab = false
-vim.o.shiftwidth = 4
+vim.o.expandtab = true
 vim.o.smarttab = true
 
 vim.o.relativenumber = true
