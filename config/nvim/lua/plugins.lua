@@ -31,5 +31,11 @@ require('packer').startup(function()
 		requires = { 'kyazdani42/nvim-web-devicons', opt = true }
 	}
 	use 'APZelos/blamer.nvim'
-end)
 
+	use {
+	  'lewis6991/gitsigns.nvim',
+	  requires = {
+	    'nvim-lua/plenary.nvim'
+	  },
+	}
+end)
