@@ -213,6 +213,7 @@ static void mappingnotify(XEvent *e);
 static void maprequest(XEvent *e);
 static void monocle(Monitor *m);
 static void motionnotify(XEvent *e);
+static void pip_ify(const Arg *arg);
 static void moveresize(const Arg *arg);
 static void moveresizeedge(const Arg *arg);
 static void movemouse(const Arg *arg);
@@ -285,7 +286,7 @@ static void (*handler[LASTEvent]) (XEvent *) = {
 	[ConfigureRequest] = configurerequest,
 	[ConfigureNotify] = configurenotify,
 	[DestroyNotify] = destroynotify,
-	[EnterNotify] = enternotify,
+//	[EnterNotify] = enternotify,
 	[Expose] = expose,
 	[FocusIn] = focusin,
 	[KeyPress] = keypress,
@@ -1286,6 +1287,15 @@ movemouse(const Arg *arg)
 		selmon = m;
 		focus(NULL);
 	}
+}
+
+void
+pip_ify(const Arg *arg) {
+  Arg a = {0};
+  a.v = "b";
+  moveresizeedge(&a);
+  a.v = "r";
+  moveresizeedge(&a);
 }
 
 void

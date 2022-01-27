@@ -1,13 +1,13 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
-static const Gap default_gap        = {.isgap = 1, .realgap = 10, .gappx = 20 };
+static const Gap default_gap        = { .isgap = 1, .realgap = 10, .gappx = 20 };
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const int user_bh            = 35;       /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
-static const char *fonts[]          = { "UbuntuMono:size=17", "MesloLGS NF:size=17" };
+static const int user_bh            = 30;       /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
+static const char *fonts[]          = { "UbuntuMono:size=18", "MesloLGS NF:size=18" };
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
 static char normfgcolor[]           = "#bbbbbb";
@@ -25,7 +25,7 @@ static char *colors[][3] = {
 subscripts ₁₂₃₄₅₆₇₈₉
 nerd fonts: https://www.nerdfonts.com/cheat-sheet
 */
-static const char *tags[] = { "₁", "₂", "3", "4", "5", "6", "7", "8", "阮" };
+static const char *tags[] = { "聆₁", "₂", "₃", "力₄", "₅", "₆", "₇", "₈", "阮₉" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -116,6 +116,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_Up,     moveresize,          {.v = "0x 0y 0w -25h" } },
 	{ MODKEY|ShiftMask,             XK_Right,  moveresize,          {.v = "0x 0y 25w 0h" } },
 	{ MODKEY|ShiftMask,             XK_Left,   moveresize,          {.v = "0x 0y -25w 0h" } },
+	{ MODKEY|ControlMask,           XK_p,      pip_ify,             {0} },
 	{ MODKEY|ControlMask,           XK_Up,     moveresizeedge,      {.v = "t"} },
 	{ MODKEY|ControlMask,           XK_Down,   moveresizeedge,      {.v = "b"} },
 	{ MODKEY|ControlMask,           XK_Left,   moveresizeedge,      {.v = "l"} },
