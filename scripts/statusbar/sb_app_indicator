@@ -1,0 +1,8 @@
+#!/bin/bash
+
+procs=""
+
+pidof dockerd &>/dev/null
+[ $? -eq 0 ] && procs+=",docker"
+
+echo ${procs} | tr ',' '\n'
