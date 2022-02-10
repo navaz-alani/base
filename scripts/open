@@ -1,0 +1,46 @@
+#!/bin/bash
+
+EXEC="${0##*/}" # current script name (no path)
+
+usage() {
+cat << EOF
+usage: ${EXEC} [files...]
+
+${EXEC} attempts to open each of the files specified, if it knows how to do so.
+Support for different filetypes can be added by editing this script directly.
+EOF
+}
+
+[ $# -eq 0 ] && usage && exit 1
+
+# __open implements the core functionality, for a single file.
+# Edit this to add support for different file types (see comments).
+__open() {
+  file="${1}"
+  extension="${1##*\.}"
+  if [ "${file}" == "${extension}" ]; then
+    echo "error: no extension for file ${file}"
+    return 1
+  fi
+
+  # All files are opened in this case statement.
+  # Add a filetype, as well as a command to open $file (while silencing all
+  # output and sending the job to the background).
+  # The end of the case statement ends with a call to `disown` so the job
+  # started is not associated with this shell, so if you decide not to start  a
+  # job in the case statement, return from the function.
+  case "${extension}" in
+    pdf)
+      zathura "${file}" &>/dev/null &
+      ;;
+    *)
+      echo "error: can't open '${file}'; unsupported filetype '.${extension}'"
+      return
+      ;;
+  esac
+  disown $! # disown last backgrounded task
+}
+
+for file in "$@"; do
+    __open "${file}"
+done

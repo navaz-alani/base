@@ -23,4 +23,12 @@
 
 # launch the screenshot utility
 "screenshot"
-  Control+Mod4 + s
+  Print
+
+# launch file manager
+"nautilus -w"
+  Shift+Mod4 + apostrophe
+
+# launch firefox
+"ff"
+  Shift+Mod4 + semicolon

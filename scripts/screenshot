@@ -6,7 +6,7 @@ if [ ! -d "${SCREENSHOTS_DIR}" ]; then
 fi
 
 selected_mode=`printf 'Screen\nWindow\nSelection' |
-	rofi -dmenu ${modes} -p 'Select screenshot mode'`
+	rofi -dmenu -p 'Select screenshot mode'`
 if [ $? -ne 0 ]; then
 	exit 1
 fi
@@ -15,13 +15,13 @@ filename="${SCREENSHOTS_DIR}/screenshot-`date +%d_%m_%y-%T`.png"
 
 case "${selected_mode}" in
 	Screen)
-		scrot -
+		maim
 		;;
 	Window)
-		scrot -ub -
+    maim -i `xdotool getactivewindow`
 		;;
 	Selection)
-		scrot -s -
+		maim -s
 		;;
 	*)
 		exit 1

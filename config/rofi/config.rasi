@@ -1,7 +1,7 @@
 @theme "colors-rofi-dark"
 
 * {
-  font: "MesloLGS NF 15";
+  font: "MesloLGS NF 13";
 }
 
 window {

@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# This is a system-update helper script which can be used to automate the
+# process, as well as install hooks throughout the process to customize it.
+#
+# It can also be important if you know that there are packages which will break
+# when they upgrade. In such a situation, the system update command can be
+# changed until the packages in question have accepted the updates (or whatever
+# issue may have been is now solved).
+
+# == BEGIN IGNORE_LIST NOTES ==
+# * mpv is here beacuse it depends on ffmpeg
+# * firefox also tends to break (video codec error for mpeg4 I think, so related
+#   to x264 then)
+# ==  END IGNORE_LIST NOTES  ==
+IGNORE_LIST="ffmpeg,x264,mpv,libplacebo"
+
+# NOTE: Configurables end here and the main "driver" code begins here.
+
+[ `whoami` != "root" ] &&
+  echo "Try running this as root." &&
+  exit 1;
+
+echo "==> Note that the following packages won't be updated: "
+printf "\t%s" `echo "${IGNORE_LIST}" | sed 's/,/\n\t/g/'`
+
+echo "==>"
+pacman -Su --ignore "${IGNORE_LIST}"

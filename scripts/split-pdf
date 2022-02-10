@@ -1,0 +1,70 @@
+#!/bin/bash
+
+## START: CONFIGURABLES
+
+EXEC="${0##*/}"
+SPLITFILE_EXT="parts"
+
+driver() {
+  pdf="${1}"
+  out="${2}"
+  range="${3}"
+
+  mkdir -p "${out%/*}"
+  pdftk "${pdf}" cat "${range}" output "${out}"
+}
+
+# END: CONFIGURABLES
+
+die() {
+  if [ ! -z "$2" ]; then
+    echo "${EXEC} [fatal,exit]:  $2"
+  else
+    echo "${EXEC} [fatal,exit]"
+  fi
+  exit $1
+}
+
+usage() {
+cat << EOF
+Usage:
+	${EXEC} [prefix]
+	${EXEC} [pdf] [splitfile]
+
+The latter is a legacy invocation, so the former is almost always preferred.
+In particular, if '${EXEC} test.pdf parts.txt' is run and a PDF file called
+'test.pdf.pdf' exists in the same directory, it will be operated on (and a
+splitfile called 'test.pdf.split').
+EOF
+}
+
+prefix="${1}"
+pdf="${1}"
+splitfile="${2}"
+
+case "${1}" in
+  -h | --h | help)
+    usage && exit 0
+    ;;
+  *)
+    ;;
+esac
+
+if [ -f "${prefix}.pdf" ]; then
+  pdf="${prefix}.pdf"
+  splitfile="${prefix}.${SPLITFILE_EXT}"
+elif [ -z "${prefix}" ]; then
+  die 1 "need either prefix or pdf-splitfile pair"
+fi
+
+if [ ! -f "${pdf}" ]; then
+  die 1 "pdf '${pdf}' not found"
+elif [ ! -f "${splitfile}" ]; then
+  die 1 "file '${splitfile}' not found"
+fi
+
+while read line; do
+  out="parts/$(echo ${line} | cut -d ' ' -f 1)"
+  range="$(echo ${line} | cut -d ' ' -f 2)"
+  driver "${pdf}" "${out}" "${range}"
+done < "${splitfile}"

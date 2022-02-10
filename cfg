@@ -3,6 +3,7 @@ export CFG_BASE="${HOME}/.config/base"
 # add the scripts & bin directories to the path
 path="${PATH}:${HOME}/.local/bin"
 path="${path}:${CFG_BASE}/scripts"
+path="${path}:${CFG_BASE}/scripts/statusbar"
 path="${path}:${CFG_BASE}/bin:${CFG_BASE}/sys"
 path="${path}:${HOME}/.local/share/nvim/lsp_servers"
 export PATH="${path}"

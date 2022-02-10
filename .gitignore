@@ -1,6 +1,11 @@
 # object files in any directory
 **/*.o
-# compiled programs
+
+# clangd lsp files
+compile_commands.json
+.cache/
+
+# compiled binaries
 dwm/dwm
 st/st
 bin/dwmstat

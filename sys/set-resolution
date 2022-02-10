@@ -1,0 +1,52 @@
+#!/bin/bash
+
+x__register_resolution() {
+  x="${1}" ; y="${2}"
+  modeline=`cvt "${x}" "${y}" | tail -n 1 | sed 's/Modeline //'`
+  name=`echo ${modeline} | sed 's/"[^"]*$// ; s/"//'`
+
+  echo ${modeline} | xargs xrandr --newmode
+  xrandr --addmode eDP1 "${name}"
+}
+
+x__set_res() {
+  x="${1}" ; y="${2}"
+  x__register_resolution "${x}" "${y}"
+  xrandr -s "${x}x${y}"
+}
+
+set_resolution_interactive() {
+  # resolutions displayed for selection
+  resolutions=("1800x1200")
+  resolutions+=("2160x1440")
+  resolutions+=("1440x960")
+  # prompt user to select resoution
+  selected=`echo ${resolutions[@]} |
+    tr ' ' '\n' |
+    rofi -dmenu -p "Select resolution"`
+  # if user aborted, we follow suit
+  [ $? -ne 0 ] && exit 1
+  xy=(`echo ${selected} | tr 'x' ' '`)
+  x__set_res ${xy[@]}
+}
+
+usage() {
+  cat << EOF
+Usage:
+  ${0##*/}            # set resolution interactively
+  ${0##*/} -- x y     # set-resolution explicitly
+
+${0##*/} registers the selected/specified resolution with the X server (an
+operation which seems to be idempotent), and then sets the it to be the current
+selected resolution.
+Thus this is handy for both interactive & scripting purposes.
+EOF
+}
+
+if [ $# -eq 0 ]; then
+  set_resolution_interactive
+  exit
+elif [[ $# -eq 3 && "${1}" == "--" ]]; then
+  x__set_res "${2}" "${3}"
+fi
+

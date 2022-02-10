@@ -1,0 +1,27 @@
+#!/bin/bash
+
+EXE="${0##*/}" # current script name
+
+usage() {
+  cat <<END
+usage: ${EXE} [clean-job | --help]
+
+Perform named cleanup jobs.
+END
+}
+
+[ -z "${1}" ] && usage && exit 1
+
+case "${1}" in
+  -*h | -*help)
+    usage
+    exit 0
+    ;;
+  tex | latex) # clean up latex build remnants
+    rm -f *.aux *.log *.out texput.log
+    ;;
+  *)
+    echo "error: no named clean job '${1}'"
+    exit 1
+    ;;
+esac
